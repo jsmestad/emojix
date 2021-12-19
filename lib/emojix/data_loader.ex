@@ -6,11 +6,11 @@ defmodule Emojix.DataLoader do
   alias Mint.HTTP
 
   @download_host "cdn.jsdelivr.net"
-  @download_path "/npm/emojibase-data@6.0.0/en/compact.json"
-  @download_shortcodes "/npm/emojibase-data@6.0.0/en/shortcodes/iamcal.json"
-  @download_legacy_shortcodes "/npm/emojibase-data@6.0.0/en/shortcodes/emojibase-legacy.json"
+  @download_path "/npm/emojibase-data@7.0.0/en/compact.json"
+  @download_shortcodes "/npm/emojibase-data@7.0.0/en/shortcodes/iamcal.json"
+  @download_legacy_shortcodes "/npm/emojibase-data@7.0.0/en/shortcodes/emojibase-legacy.json"
 
-  @spec ets_table_path :: Path
+  @spec ets_table_path :: binary
   def ets_table_path do
     Path.join(:code.priv_dir(:emojix), "dataset.ets")
   end
@@ -98,7 +98,7 @@ defmodule Emojix.DataLoader do
     %Emojix.Emoji{
       id: emoji.order,
       hexcode: emoji.hexcode,
-      description: emoji.annotation,
+      description: emoji.label,
       shortcodes: List.wrap(shortcodes),
       unicode: emoji.unicode,
       tags: Map.get(emoji, :tags, []),
